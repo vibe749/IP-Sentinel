@@ -208,29 +208,33 @@ MSG="$MSG
 if [ -n "$REMOTE_VER" ] && [ "$REMOTE_VER" != "$LOCAL_VER" ]; then
     MSG="$MSG
 最新官方版本: \`v${REMOTE_VER}\` (✨有新版)
-💡 *司令部提示：检测到新版装甲，请长官登录节点执行平滑热更新！*"
+💡 *系统提示：检测到新版引擎，建议通过控制台执行 OTA 热更新！*"
 elif [ -n "$REMOTE_VER" ] && [ "$REMOTE_VER" == "$LOCAL_VER" ]; then
     MSG="$MSG
 最新官方版本: \`v${REMOTE_VER}\` (✅已是最新)
-💡 *哨兵正在后台默默守护您的资产。*"
+💡 *IP-Sentinel 持续为您守护节点。若本项目对您有帮助，欢迎前往 GitHub 赐予 🌟*"
 else
     # 抓取失败兜底
     MSG="$MSG
-💡 *哨兵正在后台默默守护您的资产。*"
+💡 *IP-Sentinel 持续为您守护节点。若本项目对您有帮助，欢迎前往 GitHub 赐予 🌟*"
 fi
 
-# 5. 调用 API 推送 (接入安全网关，挂载交互式控制台按钮)
+# 5. 调用 API 推送 (接入安全网关，挂载控制台按钮与 GitHub 引流)
 JSON_PAYLOAD=$(jq -n \
   --arg cid "$CHAT_ID" \
   --arg txt "$MSG" \
   --arg cb "manage:${NODE_NAME}" \
+  --arg repo_url "https://github.com/hotyue/IP-Sentinel" \
   '{
     chat_id: $cid,
     text: $txt,
     parse_mode: "Markdown",
     disable_web_page_preview: true,
     reply_markup: {
-      inline_keyboard: [[{text: "⚙️ 调出该节点控制台", callback_data: $cb}]]
+      inline_keyboard: [
+        [{"text": "⚙️ 调出该节点控制台", "callback_data": $cb}],
+        [{"text": "🌟 前往 GitHub 仓库点亮星标", "url": $repo_url}]
+      ]
     }
   }')
 

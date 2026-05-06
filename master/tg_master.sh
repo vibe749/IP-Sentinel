@@ -284,20 +284,20 @@ while true; do
                         
                         # 仅当非官方网关 且 开启了中枢 OTA 权限时，才渲染升级按钮
                         if [ "$IS_OFFICIAL_GATEWAY" != "true" ] && [ "${ENABLE_MASTER_OTA:-false}" == "true" ]; then
-                            BTN_MASTER_OTA="[{\"text\":\"🆙 升级司令部至 v${REMOTE_VER}\",\"callback_data\":\"master_ota_confirm\"}],"
+                            BTN_MASTER_OTA="[{\"text\":\"🆙 升级控制中枢至 v${REMOTE_VER}\",\"callback_data\":\"master_ota_confirm\"}],"
                         fi
                     fi
 
                     NODE_COUNT=$(db_exec "SELECT COUNT(*) FROM nodes WHERE chat_id='$CHAT_ID';")
                     [ -z "$NODE_COUNT" ] && NODE_COUNT=0
 
-                    # L0 扁平化重构：将司令部升级按钮动态置于最顶层
+                    # L0 扁平化重构：升级按钮置顶，底部追加带有 url 属性的 GitHub 引流按钮
                     if [ "$IS_OFFICIAL_GATEWAY" != "true" ]; then
-                        BTNS="[${BTN_MASTER_OTA}[{\"text\":\"🌍 进入全球战区雷达 (管理节点)\",\"callback_data\":\"list_nodes\"}], [{\"text\":\"🚀 全军总攻\",\"callback_data\":\"all_run\"}, {\"text\":\"📊 全军简报\",\"callback_data\":\"all_reports\"}], [{\"text\":\"☢️ 全舰队 OTA 热重载\",\"callback_data\":\"all_ota_confirm\"}]]"
+                        BTNS="[${BTN_MASTER_OTA}[{\"text\":\"🌍 进入全球雷达 (管理节点)\",\"callback_data\":\"list_nodes\"}], [{\"text\":\"🚀 唤醒全局巡逻\",\"callback_data\":\"all_run\"}, {\"text\":\"📊 获取全局简报\",\"callback_data\":\"all_reports\"}], [{\"text\":\"🔄 全网节点 OTA 热重载\",\"callback_data\":\"all_ota_confirm\"}], [{\"text\":\"🌟 前往 GitHub 点亮星标\",\"url\":\"https://github.com/hotyue/IP-Sentinel\"}]]"
                     else
-                        BTNS="[[{\"text\":\"🌍 进入全球战区雷达 (管理节点)\",\"callback_data\":\"list_nodes\"}], [{\"text\":\"🚀 全军总攻\",\"callback_data\":\"all_run\"}, {\"text\":\"📊 全军简报\",\"callback_data\":\"all_reports\"}]]"
+                        BTNS="[[{\"text\":\"🌍 进入全球雷达 (管理节点)\",\"callback_data\":\"list_nodes\"}], [{\"text\":\"🚀 唤醒全局巡逻\",\"callback_data\":\"all_run\"}, {\"text\":\"📊 获取全局简报\",\"callback_data\":\"all_reports\"}], [{\"text\":\"🌟 前往 GitHub 点亮星标\",\"url\":\"https://github.com/hotyue/IP-Sentinel\"}]]"
                     fi
-                    TEXT_MSG="🛡️ **IP-Sentinel 司令部**\n${VER_INFO}\n\n📊 舰队状态: 共有 \`${NODE_COUNT}\` 台哨兵在线\n欢迎回来，长官。请下达战略指令："
+                    TEXT_MSG="🛡️ **IP-Sentinel 控制中枢**\n${VER_INFO}\n\n📊 节点状态: 共有 \`${NODE_COUNT}\` 台节点在线\n欢迎回来，管理者。请下达系统指令："
                     send_ui "$CHAT_ID" "$TEXT_MSG" "$BTNS"
                     ;;
                     

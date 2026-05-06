@@ -1040,9 +1040,15 @@ if [ "$UPGRADE_MODE" == "false" ]; then
     AGENT_COUNT=$(curl -s -m 3 "https://ip-sentinel-count.samanthaestime296.workers.dev/ping/agent" || echo "")
 
     if [ -n "$AGENT_COUNT" ] && [[ "$AGENT_COUNT" =~ ^[0-9]+$ ]]; then
-        echo -e "\033[32m✅ 感谢您成为全球第 ${AGENT_COUNT} 名 IP-Sentinel 哨兵！\033[0m"
+        echo -e "\033[32m✅ 感谢您成为全球第 ${AGENT_COUNT} 名 IP-Sentinel 节点维护者！\033[0m"
     else
-        echo -e "\033[32m✅ 感谢您加入 IP-Sentinel 哨兵阵列！\033[0m"
+        echo -e "\033[32m✅ 感谢您部署 IP-Sentinel！\033[0m"
     fi
-    echo -e "\n"
 fi
+
+# ================== [新增: 安装成功高光时刻 Star 引导] ==================
+echo -e "\n========================================================"
+echo -e "⭐ \033[33m开源不易，如果 IP-Sentinel 提升了您的节点稳定性，请赐予我们一枚星标！\033[0m"
+echo -e "💡 \033[32m您的每一颗 Star 都是我们持续对抗风控、维护更新指纹库的核心动力。\033[0m"
+echo -e "👉 \033[36m\033[4m\033]8;;https://github.com/hotyue/IP-Sentinel\033\\[点击此处直达 GitHub 仓库点亮 Star 🌟]\033]8;;\033\\\033[0m"
+echo -e "========================================================\n"

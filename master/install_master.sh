@@ -380,9 +380,15 @@ if [ "$UPGRADE_MODE" == "false" ]; then
     MASTER_COUNT=$(curl -s -m 3 "https://ip-sentinel-count.samanthaestime296.workers.dev/ping/master" || echo "")
 
     if [ -n "$MASTER_COUNT" ] && [[ "$MASTER_COUNT" =~ ^[0-9]+$ ]]; then
-        echo -e "\033[32m✅ 感谢您成为全球第 ${MASTER_COUNT} 名 IP-Sentinel 指挥官！\033[0m"
+        echo -e "\033[32m✅ 感谢您成为全球第 ${MASTER_COUNT} 名 IP-Sentinel 中枢管理者！\033[0m"
     else
-        echo -e "\033[32m✅ 感谢您建立 IP-Sentinel 司令部！\033[0m"
+        echo -e "\033[32m✅ 感谢您部署 IP-Sentinel 控制中枢！\033[0m"
     fi
-    echo -e "\n"
 fi
+
+# ================== [新增: 安装成功高光时刻 Star 引导] ==================
+echo -e "\n========================================================"
+echo -e "⭐ \033[33m开源不易，如果 IP-Sentinel 极大简化了您的多节点管理，请赐予我们一枚星标！\033[0m"
+echo -e "💡 \033[32m您的每一颗 Star 都是我们持续迭代架构、开发 Web 视窗化控制台的动力源泉。\033[0m"
+echo -e "👉 \033[36m\033[4m\033]8;;https://github.com/hotyue/IP-Sentinel\033\\[点击此处直达 GitHub 仓库点亮 Star 🌟]\033]8;;\033\\\033[0m"
+echo -e "========================================================\n"

@@ -5,6 +5,7 @@
 ![License](https://img.shields.io/github/license/hotyue/IP-Sentinel)
 
 > **一个极度轻量、零感知、支持中枢遥控的 VPS IP 自动化养护与区域纠偏引擎。**
+> **💡 提示：如果本项目提升了您的节点稳定性，请点击右上角点亮 🌟 Star！您的支持是我们持续研发和维护指纹库的核心动力。**
 
 📢 官方战术交流频道: 🛰️ [IP-Sentinel Matrix](https://t.me/IP_Sentinel_Matrix)
 
